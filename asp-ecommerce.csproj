@@ -7,4 +7,8 @@
     <RootNamespace>asp_ecommerce</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\HelloWorldController.cs" />
+  </ItemGroup>
+
 </Project>
