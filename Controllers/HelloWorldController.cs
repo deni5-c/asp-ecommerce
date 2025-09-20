@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace asp_ecommerce.Controllers
 {
@@ -10,7 +9,7 @@ namespace asp_ecommerce.Controllers
         [HttpGet]
         public IActionResult GetHello()
         {
-            return Ok(new
+            return BadRequest(new
             {
                 message = "Hello World!"
             });
