@@ -1,0 +1,25 @@
+{
+  "name": "asp-ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "npx @tailwindcss/cli -i ./wwwroot/css/site.css -o ./wwwroot/css/site.style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deni5-c/asp-ecommerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/deni5-c/asp-ecommerce/issues"
+  },
+  "homepage": "https://github.com/deni5-c/asp-ecommerce#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.14",
+    "tailwindcss": "^4.1.14"
+  }
+}

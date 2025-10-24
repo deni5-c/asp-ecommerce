@@ -1,0 +1,110 @@
+﻿@model RegisterViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title> <!-- Removed asp_ecommerce suffix -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+
+    <div class="w-full max-w-md">
+        <!-- Registration Card -->
+        <div class="rounded-2xl bg-white p-8 shadow-2xl">
+            <!-- Header -->
+            <div class="mb-8 text-center">
+                <h1 class="mb-2 text-3xl font-bold text-gray-800">Create Account</h1>
+                <p class="text-gray-600">Join us today and start shopping</p>
+            </div>
+
+            <!-- Success/Error Messages -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="mb-4 rounded-lg border border-green-400 bg-green-100 px-4 py-3 text-center text-green-700">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="mb-4 rounded-lg border border-red-400 bg-red-100 px-4 py-3 text-center text-red-700">
+                    <ul class="list-inside list-disc">
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <!-- Registration Form -->
+            <form asp-action="Register" method="post" class="space-y-6">
+                <div>
+                    <label asp-for="Name" class="mb-2 block text-sm font-medium text-gray-700">Full Name</label>
+                    <input asp-for="Name" type="text"
+                           class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-indigo-500"
+                           placeholder="John Doe">
+                    <span asp-validation-for="Name" class="mt-1 text-sm text-red-500"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Email" class="mb-2 block text-sm font-medium text-gray-700">Email Address</label>
+                    <input asp-for="Email" type="email"
+                           class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-indigo-500"
+                           placeholder="john@example.com">
+                    <span asp-validation-for="Email" class="mt-1 text-sm text-red-500"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Password" class="mb-2 block text-sm font-medium text-gray-700">Password</label>
+                    <input asp-for="Password" type="password"
+                           class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-indigo-500"
+                           placeholder="••••••••">
+                    <span asp-validation-for="Password" class="mt-1 text-sm text-red-500"></span>
+                </div>
+
+                <div>
+                    <label asp-for="ConfirmPassword" class="mb-2 block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" type="password"
+                           class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-indigo-500"
+                           placeholder="••••••••">
+                    <span asp-validation-for="ConfirmPassword" class="mt-1 text-sm text-red-500"></span>
+                </div>
+
+                <button type="submit"
+                        class="w-full rounded-lg bg-indigo-600 py-3 font-semibold text-white shadow-lg transition hover:scale-[1.02] hover:bg-indigo-700">
+                    Create Account
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="relative my-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="bg-white px-2 text-gray-500">Already have an account?</span>
+                </div>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center">
+                <a asp-action="Login" class="font-medium text-indigo-600 hover:text-indigo-800">
+                    Sign in here
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer below registration card -->
+        <p class="mt-6 text-center text-sm text-gray-600">
+            © 2025 - asp_ecommerce - <a href="#" class="text-indigo-600 hover:underline">Privacy</a>
+        </p>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>
