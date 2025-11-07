@@ -1,8 +1,241 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p class="text-red-950">Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 text-white">
+    <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="absolute inset-0">
+        <div class="absolute top-0 left-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-5"></div>
+        <div class="absolute right-0 bottom-0 h-96 w-96 translate-x-1/2 translate-y-1/2 rounded-full bg-white opacity-5"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 md:py-32 lg:px-8">
+        <div class="text-center">
+            <h1 class="mb-6 text-4xl leading-tight font-bold md:text-5xl lg:text-6xl">
+                Welcome to Our E-Commerce Store
+            </h1>
+            <p class="mx-auto mb-8 max-w-3xl text-xl text-blue-100 md:text-2xl">
+                Discover amazing products at unbeatable prices. Shop the latest trends with exclusive deals and free shipping on orders over $50
+            </p>
+            <div class="flex flex-col justify-center gap-4 sm:flex-row">
+                <a href="#categories" class="transform rounded-xl bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-2xl transition duration-300 hover:scale-105 hover:bg-gray-100">
+                    Shop Now
+                </a>
+                <a asp-controller="About" asp-action="Index" class="transform rounded-xl border-2 border-white bg-transparent px-8 py-4 text-lg font-semibold text-white transition duration-300 hover:scale-105 hover:bg-white hover:text-purple-600">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+            <div class="group text-center transition duration-300 hover:scale-105">
+                <div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 transition duration-300 group-hover:bg-blue-600">
+                    <svg class="h-8 w-8 text-blue-600 transition duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                    </svg>
+                </div>
+                <h3 class="mb-2 text-lg font-semibold text-gray-900">Free Shipping</h3>
+                <p class="text-gray-600">On orders over $50</p>
+            </div>
+            <div class="group text-center transition duration-300 hover:scale-105">
+                <div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100 transition duration-300 group-hover:bg-green-600">
+                    <svg class="h-8 w-8 text-green-600 transition duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                </div>
+                <h3 class="mb-2 text-lg font-semibold text-gray-900">Secure Payment</h3>
+                <p class="text-gray-600">100% secure transactions</p>
+            </div>
+            <div class="group text-center transition duration-300 hover:scale-105">
+                <div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 transition duration-300 group-hover:bg-purple-600">
+                    <svg class="h-8 w-8 text-purple-600 transition duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                </div>
+                <h3 class="mb-2 text-lg font-semibold text-gray-900">Easy Returns</h3>
+                <p class="text-gray-600">30-day return policy</p>
+            </div>
+            <div class="group text-center transition duration-300 hover:scale-105">
+                <div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-pink-100 transition duration-300 group-hover:bg-pink-600">
+                    <svg class="h-8 w-8 text-pink-600 transition duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="mb-2 text-lg font-semibold text-gray-900">24/7 Support</h3>
+                <p class="text-gray-600">Always here to help</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-gradient-to-br from-orange-50 to-red-50 py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 text-center">
+            <span class="mb-4 inline-block rounded-full bg-red-500 px-4 py-2 text-sm font-bold text-white">LIMITED TIME</span>
+            <h2 class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">🔥 Top Offers This Week</h2>
+            <p class="text-xl text-gray-600">Don't miss out on these amazing deals!</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div class="group overflow-hidden rounded-2xl bg-white shadow-xl transition duration-300 hover:shadow-2xl">
+                <div class="relative">
+                    <div class="flex h-48 items-center justify-center bg-gradient-to-br from-blue-400 to-purple-500">
+                        <svg class="h-24 w-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="rounded-full bg-red-500 px-4 py-2 text-lg font-bold text-white shadow-lg">-50%</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-xl font-bold text-gray-900">Electronics Sale</h3>
+                    <p class="mb-4 text-gray-600">Up to 50% off on selected gadgets and tech accessories</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-sm text-gray-500 line-through">$199.99</span>
+                            <span class="ml-2 text-2xl font-bold text-red-600">$99.99</span>
+                        </div>
+                        <button class="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2 font-semibold text-white transition duration-300 hover:from-blue-700 hover:to-purple-700">
+                            Shop Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group overflow-hidden rounded-2xl bg-white shadow-xl transition duration-300 hover:shadow-2xl">
+                <div class="relative">
+                    <div class="flex h-48 items-center justify-center bg-gradient-to-br from-pink-400 to-red-500">
+                        <svg class="h-24 w-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="rounded-full bg-red-500 px-4 py-2 text-lg font-bold text-white shadow-lg">-30%</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-xl font-bold text-gray-900">Fashion Deals</h3>
+                    <p class="mb-4 text-gray-600">Trendy styles at incredible prices. Limited stock available</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-sm text-gray-500 line-through">$89.99</span>
+                            <span class="ml-2 text-2xl font-bold text-red-600">$62.99</span>
+                        </div>
+                        <button class="rounded-lg bg-gradient-to-r from-pink-600 to-red-600 px-6 py-2 font-semibold text-white transition duration-300 hover:from-pink-700 hover:to-red-700">
+                            Shop Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group overflow-hidden rounded-2xl bg-white shadow-xl transition duration-300 hover:shadow-2xl">
+                <div class="relative">
+                    <div class="flex h-48 items-center justify-center bg-gradient-to-br from-green-400 to-teal-500">
+                        <svg class="h-24 w-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="rounded-full bg-red-500 px-4 py-2 text-lg font-bold text-white shadow-lg">-40%</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-xl font-bold text-gray-900">Home & Living</h3>
+                    <p class="mb-4 text-gray-600">Transform your space with our exclusive home decor collection</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-sm text-gray-500 line-through">$149.99</span>
+                            <span class="ml-2 text-2xl font-bold text-red-600">$89.99</span>
+                        </div>
+                        <button class="rounded-lg bg-gradient-to-r from-green-600 to-teal-600 px-6 py-2 font-semibold text-white transition duration-300 hover:from-green-700 hover:to-teal-700">
+                            Shop Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="categories" class="bg-white py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 text-center">
+            <h2 class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">Shop by Category</h2>
+            <p class="text-xl text-gray-600">Explore our wide range of products</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
+            <div class="group cursor-pointer">
+                <div class="mb-3 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 p-8 shadow-md transition duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <svg class="mx-auto h-16 w-16 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-center font-semibold text-gray-900">Electronics</h3>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="mb-3 rounded-2xl bg-gradient-to-br from-pink-100 to-pink-200 p-8 shadow-md transition duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <svg class="mx-auto h-16 w-16 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-center font-semibold text-gray-900">Fashion</h3>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="mb-3 rounded-2xl bg-gradient-to-br from-green-100 to-green-200 p-8 shadow-md transition duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <svg class="mx-auto h-16 w-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-center font-semibold text-gray-900">Home</h3>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="mb-3 rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200 p-8 shadow-md transition duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <svg class="mx-auto h-16 w-16 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <h3 class="text-center font-semibold text-gray-900">Books</h3>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="mb-3 rounded-2xl bg-gradient-to-br from-orange-100 to-orange-200 p-8 shadow-md transition duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <svg class="mx-auto h-16 w-16 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-center font-semibold text-gray-900">Toys</h3>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="mb-3 rounded-2xl bg-gradient-to-br from-red-100 to-red-200 p-8 shadow-md transition duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <svg class="mx-auto h-16 w-16 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-center font-semibold text-gray-900">Beauty</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-gradient-to-r from-blue-600 to-purple-600 py-16 text-white">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <h2 class="mb-4 text-3xl font-bold md:text-4xl">Subscribe to Our Newsletter</h2>
+        <p class="mb-8 text-xl text-blue-100">Get exclusive deals and updates delivered to your inbox</p>
+        <div class="mx-auto flex max-w-xl flex-col gap-4 sm:flex-row">
+            <input type="email" placeholder="Enter your email" class="flex-1 rounded-xl px-6 py-4 text-gray-900 focus:ring-2 focus:ring-white focus:outline-none">
+            <button class="rounded-xl bg-white px-8 py-4 font-semibold text-purple-600 shadow-lg transition duration-300 hover:bg-gray-100">
+                Subscribe
+            </button>
+        </div>
+    </div>
+</section>

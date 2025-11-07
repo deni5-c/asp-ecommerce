@@ -18,21 +18,6 @@ namespace asp_ecommerce.Controllers
             return View();
         }
 
-        public IActionResult About()
-        {
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
-        public IActionResult Faq()
-        {
-            return View();
-        }
-
         public IActionResult Privacy()
         {
             return View();

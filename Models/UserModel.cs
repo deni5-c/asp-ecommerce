@@ -1,19 +1,13 @@
 ﻿using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
-using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace asp_ecommerce.Models
 {
-    public enum Role
-    {
-        USER,
-        ADMIN
-    }
-
     [Table("User")]
     public class User : BaseModel
     {
-        [PrimaryKey("id")]
+        [PrimaryKey("id", false)]
         [Column("id")]
         public string Id { get; set; }
 
@@ -27,12 +21,7 @@ namespace asp_ecommerce.Models
         public string Password { get; set; }
 
         [Column("role")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public Role Role { get; set; } = Role.USER;
-
-        // Relationship: User has many Stores
-        // [Reference(typeof(Store))]
-        // public List<Store> Stores { get; set; }
+        public string Role { get; set; }
 
         [Column("createdAt")]
         public DateTime CreatedAt { get; set; }

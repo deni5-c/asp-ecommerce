@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50">
+    <div class="flex min-h-screen items-center justify-center px-4 py-12">
+        <div class="w-full max-w-md">
+            <div class="mb-8 text-center">
+                <div class="mb-4 inline-block rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 p-3">
+                    <svg class="h-12 w-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900">Access Denied</h2>
+                <p class="mt-2 text-gray-600">You don't have permission to access this resource</p>
+            </div>
+
+            <div class="rounded-2xl border border-gray-100 bg-white p-8 shadow-xl">
+                <div class="mb-6 flex justify-center">
+                    <div class="rounded-full bg-red-100 p-3">
+                        <svg class="h-16 w-16 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-center">
+                    <p class="text-lg font-semibold text-gray-700">
+                        403 - Forbidden
+                    </p>
+                    <p class="text-gray-600">
+                        You don't have the necessary permissions to view this page. If you believe this is an error, please contact your administrator.
+                    </p>
+                </div>
+
+                <div class="mt-8 space-y-3">
+                    <a asp-controller="Home" asp-action="Index"
+                       class="block w-full transform rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 text-center font-semibold text-white shadow-lg transition duration-200 hover:scale-[1.02] hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
+                        <div class="flex items-center justify-center">
+                            <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            Go to Home
+                        </div>
+                    </a>
+
+                    <button onclick="window.history.back()"
+                            class="block w-full rounded-xl bg-gray-100 px-4 py-3 text-center font-semibold text-gray-700 transition duration-200 hover:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:outline-none">
+                        <div class="flex items-center justify-center">
+                            <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                            Go Back
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

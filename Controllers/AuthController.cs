@@ -1,35 +1,35 @@
-﻿using asp_ecommerce.Data;
-using asp_ecommerce.Models;
-using BCrypt.Net;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using asp_ecommerce.Models;
+using asp_ecommerce.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
-
-
 
 namespace asp_ecommerce.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly ISupabaseService _supabaseService;
-        private readonly IConfiguration _configuration;
+        private readonly SupabaseAuthService _authService;
 
-        public AuthController(ISupabaseService supabaseService, IConfiguration configuration)
+        public AuthController(SupabaseAuthService authService)
         {
-            _supabaseService = supabaseService;
-            _configuration = configuration;
+            _authService = authService;
         }
 
+        // GET: /Auth/Register
         [HttpGet]
         public IActionResult Register()
         {
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
+        // POST: /Auth/Register
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
@@ -37,132 +37,197 @@ namespace asp_ecommerce.Controllers
                 return View(model);
             }
 
-            try
+            var result = await _authService.RegisterAsync(model.Name, model.Email, model.Password);
+
+            if (result.Success && result.User != null)
             {
-                var client = _supabaseService.GetClient();
-
-                var user = await client.From<User>()
-                    .Where(user => user.Email == model.Email)
-                    .Get();
-
-                if (user.Models.Any())
+                // Automatically log in the user after registration
+                var claims = new List<Claim>
                 {
-                    ModelState.AddModelError("Email", "Email already exists");
-                    return View(model);
-                }
-
-                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-
-                var newUser = new User
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = model.Name,
-                    Email = model.Email,
-                    Password = hashedPassword,
-                    Role = Role.USER,
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
+                    new Claim(ClaimTypes.NameIdentifier, result.User.Id),
+                    new Claim(ClaimTypes.Name, result.User.Name),
+                    new Claim(ClaimTypes.Email, result.User.Email),
+                    new Claim(ClaimTypes.Role, result.User.Role)
                 };
 
-                await client.From<User>().Insert(newUser);
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                TempData["SuccessMessage"] = "Registration successful! Please login.";
-                return RedirectToAction("Login");
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddDays(7)
+                };
+
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
+
+                TempData["SuccessMessage"] = "Welcome! Your account has been created successfully.";
+                return RedirectToAction("Index", "Home");
             }
-            catch (Exception err)
-            {
-                ModelState.AddModelError("", "Registration failed: " + err.Message);
-                return View(model);
-            }
+
+            ModelState.AddModelError(string.Empty, result.Message);
+            return View(model);
         }
 
+        // GET: /Auth/Login
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string? returnUrl = null)
+        {
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        // POST: /Auth/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var result = await _authService.LoginAsync(model.Email, model.Password);
+
+            if (result.Success && result.User != null)
+            {
+                // Create claims for the user
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, result.User.Id),
+                    new Claim(ClaimTypes.Name, result.User.Name),
+                    new Claim(ClaimTypes.Email, result.User.Email),
+                    new Claim(ClaimTypes.Role, result.User.Role)
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = model.RememberMe,
+                    ExpiresUtc = model.RememberMe ? DateTimeOffset.UtcNow.AddDays(7) : DateTimeOffset.UtcNow.AddHours(1)
+                };
+
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
+
+                TempData["SuccessMessage"] = "Welcome back, " + result.User.Name + "!";
+
+                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError(string.Empty, result.Message);
+            return View(model);
+        }
+
+        // POST: /Auth/Logout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            TempData["SuccessMessage"] = "You have been logged out successfully";
+            return RedirectToAction("Login");
+        }
+
+        // GET: /Auth/ForgotPassword
+        [HttpGet]
+        public IActionResult ForgotPassword()
         {
             return View();
         }
 
+        // POST: /Auth/ForgotPassword
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            try
+            var result = await _authService.SendPasswordResetEmailAsync(model.Email);
+
+            if (result.Success)
             {
-                var client = _supabaseService.GetClient();
-
-                var response = await client.From<User>()
-                    .Where(user => user.Email == model.Email)
-                    .Get();
-
-                var user = response.Models.FirstOrDefault();
-
-                if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
-                {
-                    ModelState.AddModelError("", "Invalid email or password");
-                    return View(model);
-                }
-
-                var token = GenerateJwtToken(user);
-
-                Response.Cookies.Append("AuthToken", token, new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    SameSite = SameSiteMode.Strict,
-                    Expires = DateTimeOffset.UtcNow.AddDays(7)
-                });
-
-                HttpContext.Session.SetString("UserId", user.Id);
-                HttpContext.Session.SetString("UserName", user.Name);
-                HttpContext.Session.SetString("UserEmail", user.Email);
-                HttpContext.Session.SetString("UserRole", user.Role.ToString());
-
-                TempData["SuccessMessage"] = $"Welcome back, {user.Name}!";
-                return RedirectToAction("Index", "Home");
+                TempData["ResetEmail"] = model.Email;
+                TempData["SuccessMessage"] = "Please proceed to reset your password.";
+                return RedirectToAction("ResetPassword");
             }
-            catch (Exception ex)
+
+            ModelState.AddModelError(string.Empty, result.Message);
+            return View(model);
+        }
+
+        // GET: /Auth/ResetPassword
+        [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            var email = TempData["ResetEmail"] as string;
+            if (string.IsNullOrEmpty(email))
             {
-                ModelState.AddModelError("", "Login failed: " + ex.Message);
+                return RedirectToAction("ForgotPassword");
+            }
+
+            TempData.Keep("ResetEmail");
+
+            var model = new ResetPasswordViewModel { Email = email };
+            return View(model);
+        }
+
+        // POST: /Auth/ResetPassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
                 return View(model);
             }
-        }
 
-        public IActionResult Logout()
-        {
-            Response.Cookies.Delete("AuthToken");
-            HttpContext.Session.Clear();
-            TempData["SuccessMessage"] = "You have been logged out successfully.";
-            return RedirectToAction("Login");
-        }
+            var email = model.Email ?? TempData["ResetEmail"] as string;
 
-
-        private string GenerateJwtToken(User user)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
+            if (string.IsNullOrEmpty(email))
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Role, user.Role.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+                ModelState.AddModelError(string.Empty, "Invalid reset request. Please try again.");
+                return RedirectToAction("ForgotPassword");
+            }
 
-            var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
-                claims: claims,
-                expires: DateTime.UtcNow.AddDays(7),
-                signingCredentials: credentials
-            );
+            var result = await _authService.ResetPasswordAsync(email, model.Password);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            if (result.Success)
+            {
+                TempData["SuccessMessage"] = result.Message;
+                return RedirectToAction("Login");
+            }
+
+            ModelState.AddModelError(string.Empty, result.Message);
+            return View(model);
+        }
+
+        // GET: /Auth/AccessDenied
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

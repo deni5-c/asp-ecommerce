@@ -4,59 +4,208 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - asp_ecommerce</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.style.css" asp-append-version="true" />
 </head>
-<body>
+<body class="bg-gray-50">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 bg-white">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">asp_ecommerce</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse d-sm-inline-flex justify-content-between collapse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+        <nav class="bg-white shadow-lg">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 justify-between">
+                    <div class="flex items-center space-x-8">
+                        <a asp-controller="Home" asp-action="Index" class="flex items-center">
+                            <div class="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 p-2">
+                                <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                </svg>
+                            </div>
+                            <span class="ml-3 text-xl font-bold text-gray-900">E-Commerce</span>
+                        </a>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                        </li>
+                        <!-- Navigation Links -->
+                        <div class="hidden items-center space-x-1 md:flex">
+                            <a asp-controller="Home" asp-action="Index"
+                               class="rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                                Home
+                            </a>
+                            <a asp-controller="About" asp-action="Index"
+                               class="rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                                About
+                            </a>
+                            <a asp-controller="Contact" asp-action="Index"
+                               class="rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                                Contact
+                            </a>
+                            <a asp-controller="Faq" asp-action="Index"
+                               class="rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                                FAQ
+                            </a>
+                            @if (User.IsInRole("ADMIN"))
+                            {
+                            <a asp-controller="Admin" asp-action="Dashboard"
+                               class="flex items-center rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-3 py-2 text-sm font-medium text-white shadow-md transition duration-200 hover:from-purple-700 hover:to-pink-700">
+                                <svg class="mr-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M9.504 1.132a1 1 0 01.992 0l1.75 1a1 1 0 11-.992 1.736L10 3.152l-1.254.716a1 1 0 11-.992-1.736l1.75-1zM5.618 4.504a1 1 0 01-.372 1.364L5.016 6l.23.132a1 1 0 11-.992 1.736L4 7.723V8a1 1 0 01-2 0V6a.996.996 0 01.52-.878l1.734-.99a1 1 0 011.364.372zm8.764 0a1 1 0 011.364-.372l1.733.99A1.002 1.002 0 0118 6v2a1 1 0 11-2 0v-.277l-.254.145a1 1 0 11-.992-1.736l.23-.132-.23-.132a1 1 0 01-.372-1.364zm-7 4a1 1 0 011.364-.372L10 8.848l1.254-.716a1 1 0 11.992 1.736L11 10.58V12a1 1 0 11-2 0v-1.42l-1.246-.712a1 1 0 01-.372-1.364zM3 11a1 1 0 011 1v1.42l1.246.712a1 1 0 11-.992 1.736l-1.75-1A1 1 0 012 14v-2a1 1 0 011-1zm14 0a1 1 0 011 1v2a1 1 0 01-.504.868l-1.75 1a1 1 0 11-.992-1.736L16 13.42V12a1 1 0 011-1zm-9.618 5.504a1 1 0 011.364-.372l.254.145V16a1 1 0 112 0v.277l.254-.145a1 1 0 11.992 1.736l-1.735.992a.995.995 0 01-1.022 0l-1.735-.992a1 1 0 01-.372-1.364z" clip-rule="evenodd"></path>
+                                </svg>
+                                Admin
+                            </a>
+                            }
+                        </div>
+                    </div>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
+                    <!-- Mobile menu button -->
+                    <div class="flex md:hidden">
+                        <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center rounded-lg p-2 text-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-inset">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Faq">FAQ</a>
-                        </li>
+                    <div class="flex items-center space-x-4">
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <div class="flex items-center space-x-4">
+                                <span class="text-gray-700">
+                                    Welcome, <span class="font-semibold">@User.Identity.Name</span>
+                                </span>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                                <div class="group relative">
+                                    <button class="flex items-center space-x-2 rounded-lg px-4 py-2 transition duration-200 hover:bg-gray-100">
+                                        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600">
+                                            <span class="text-sm font-semibold text-white">@User.Identity.Name?.Substring(0, 1).ToUpper()</span>
+                                        </div>
+                                        <svg class="h-4 w-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+
+                                    <div class="invisible absolute right-0 z-50 mt-2 w-48 rounded-lg border border-gray-100 bg-white opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                                        <div class="py-1">
+                                            <a href="#" class="block px-4 py-2 text-gray-700 transition duration-200 hover:bg-gray-100">
+                                                <div class="flex items-center">
+                                                    <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                                    </svg>
+                                                    Profile
+                                                </div>
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-gray-700 transition duration-200 hover:bg-gray-100">
+                                                <div class="flex items-center">
+                                                    <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                    </svg>
+                                                    Settings
+                                                </div>
+                                            </a>
+                                            <hr class="my-1 border-gray-200">
+                                            <form asp-controller="Auth" asp-action="Logout" method="post" class="block">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="w-full px-4 py-2 text-left text-red-600 transition duration-200 hover:bg-red-50">
+                                                    <div class="flex items-center">
+                                                        <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                                        </svg>
+                                                        Logout
+                                                    </div>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a asp-controller="Auth" asp-action="Login"
+                               class="px-4 py-2 font-semibold text-gray-700 transition duration-200 hover:text-blue-600">
+                                Login
+                            </a>
+                            <a asp-controller="Auth" asp-action="Register"
+                               class="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2 font-semibold text-white shadow-md transition duration-200 hover:from-blue-700 hover:to-purple-700">
+                                Sign Up
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden border-t border-gray-200 md:hidden">
+                <div class="space-y-1 px-2 pt-2 pb-3">
+                    <a asp-controller="Home" asp-action="Index"
+                       class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                        Home
+                    </a>
+                    <a asp-controller="Home" asp-action="About"
+                       class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                        About
+                    </a>
+                    <a asp-controller="Home" asp-action="Contact"
+                       class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                        Contact
+                    </a>
+                    <a asp-controller="Home" asp-action="Faq"
+                       class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                        FAQ
+                    </a>
+
+                    @if (User.Identity?.IsAuthenticated != true)
+                    {
+                        <a asp-controller="Auth" asp-action="Login"
+                           class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 transition duration-200 hover:bg-blue-50 hover:text-blue-600">
+                            Login
+                        </a>
+                        <a asp-controller="Auth" asp-action="Register"
+                           class="block rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-2 text-base font-medium text-white transition duration-200 hover:from-blue-700 hover:to-purple-700">
+                            Sign Up
+                        </a>
+                    }
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - asp_ecommerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <main role="main">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="mx-auto mt-4 max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="rounded-lg border-l-4 border-green-500 bg-green-50 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-green-800">@TempData["SuccessMessage"]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @RenderBody()
+    </main>
+
+    <footer class="mt-12 border-t border-gray-200 bg-white">
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <div class="text-center text-gray-600">
+                <p>&copy; 2025 - E-Commerce - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-blue-600 hover:text-blue-800">Privacy</a></p>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

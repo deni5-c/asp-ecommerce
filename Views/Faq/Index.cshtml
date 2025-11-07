@@ -1,0 +1,306 @@
+﻿@{
+    ViewData["Title"] = "FAQ";
+}
+
+<section class="relative bg-gradient-to-br from-blue-600 to-purple-600 py-20 text-white">
+    <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+        <h1 class="mb-6 text-4xl font-bold md:text-5xl">Frequently Asked Questions</h1>
+        <p class="mx-auto max-w-3xl text-xl text-blue-100 md:text-2xl">
+            Find answers to common questions about our products and services
+        </p>
+    </div>
+</section>
+
+<section class="border-b bg-white py-8">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="relative">
+            <input type="text" placeholder="Search for answers..." class="w-full rounded-xl border-2 border-gray-300 px-6 py-4 pl-12 transition duration-200 focus:border-transparent focus:ring-2 focus:ring-blue-500">
+            <svg class="absolute top-1/2 left-4 h-6 w-6 -translate-y-1/2 transform text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<section class="bg-gray-50 py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 grid grid-cols-1 gap-6 md:grid-cols-4">
+            <button onclick="filterCategory('general')" class="category-btn rounded-xl border-2 border-blue-600 bg-white px-6 py-4 text-left font-semibold text-gray-900 shadow-md transition duration-300 hover:shadow-lg" data-category="general">
+                General
+            </button>
+            <button onclick="filterCategory('shipping')" class="category-btn rounded-xl border-2 border-transparent bg-white px-6 py-4 text-left font-semibold text-gray-700 shadow-md transition duration-300 hover:border-blue-600 hover:shadow-lg" data-category="shipping">
+                Shipping
+            </button>
+            <button onclick="filterCategory('orders')" class="category-btn rounded-xl border-2 border-transparent bg-white px-6 py-4 text-left font-semibold text-gray-700 shadow-md transition duration-300 hover:border-blue-600 hover:shadow-lg" data-category="orders">
+                Orders
+            </button>
+            <button onclick="filterCategory('returns')" class="category-btn rounded-xl border-2 border-transparent bg-white px-6 py-4 text-left font-semibold text-gray-700 shadow-md transition duration-300 hover:border-blue-600 hover:shadow-lg" data-category="returns">
+                Returns
+            </button>
+        </div>
+
+        <div class="mx-auto max-w-4xl space-y-4">
+            <div class="faq-category mb-8" data-category="general">
+                <h2 class="mb-6 flex items-center text-2xl font-bold text-gray-900">
+                    <div class="mr-4 h-8 w-2 rounded-full bg-blue-600"></div>
+                    General Questions
+                </h2>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">How do I create an account?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-blue-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>Creating an account is easy! Click on the "Sign Up" button in the top right corner of the page. Fill in your name, email address, and create a secure password. After registration, you'll be automatically logged in and can start shopping immediately.</p>
+                    </div>
+                </div>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">What payment methods do you accept?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-blue-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express), debit cards, PayPal, Apple Pay, and Google Pay. All transactions are secure and encrypted to protect your information.</p>
+                    </div>
+                </div>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">Is my personal information secure?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-blue-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>Absolutely! We use industry-standard SSL encryption to protect your personal information. Your data is stored securely and we never share your information with third parties without your consent. Read our Privacy Policy for more details.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category mb-8" data-category="shipping">
+                <h2 class="mb-6 flex items-center text-2xl font-bold text-gray-900">
+                    <div class="mr-4 h-8 w-2 rounded-full bg-green-600"></div>
+                    Shipping & Delivery
+                </h2>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">How long does shipping take?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-green-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>Standard shipping typically takes 3-5 business days. Express shipping is available for 1-2 business day delivery. International orders may take 7-14 business days depending on the destination. You'll receive a tracking number once your order ships.</p>
+                    </div>
+                </div>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">Do you offer free shipping?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-green-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>Yes! We offer free standard shipping on all orders over $50. Orders under $50 have a flat shipping rate of $5.99. We frequently run promotions with free shipping on all orders, so check our homepage for current deals.</p>
+                    </div>
+                </div>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">Can I track my order?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-green-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>Yes! Once your order ships, you'll receive an email with a tracking number and a link to track your package. You can also view your order status by logging into your account and checking your order history.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category mb-8" data-category="orders">
+                <h2 class="mb-6 flex items-center text-2xl font-bold text-gray-900">
+                    <div class="mr-4 h-8 w-2 rounded-full bg-purple-600"></div>
+                    Orders & Payment
+                </h2>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">Can I cancel or modify my order?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-purple-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>You can cancel or modify your order within 24 hours of placing it by contacting our customer service team. Once the order has been shipped, we cannot cancel it, but you can return it for a full refund within 30 days of delivery.</p>
+                    </div>
+                </div>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">What if an item is out of stock?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-purple-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>If an item is out of stock, you can sign up for email notifications to be alerted when it becomes available again. We regularly restock popular items and will notify you as soon as they're back in stock.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category mb-8" data-category="returns">
+                <h2 class="mb-6 flex items-center text-2xl font-bold text-gray-900">
+                    <div class="mr-4 h-8 w-2 rounded-full bg-pink-600"></div>
+                    Returns & Refunds
+                </h2>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">What is your return policy?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-pink-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>We offer a 30-day return policy on most items. Products must be unused, in their original packaging, and in the same condition you received them. Simply contact our customer service to initiate a return and we'll provide you with a return shipping label.</p>
+                    </div>
+                </div>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">How long does it take to receive a refund?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-pink-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>Once we receive your returned item, we'll inspect it and process your refund within 3-5 business days. The refund will be issued to your original payment method. Depending on your bank or credit card provider, it may take an additional 5-10 business days for the refund to appear in your account.</p>
+                    </div>
+                </div>
+
+                <div class="mb-4 overflow-hidden rounded-xl bg-white shadow-md">
+                    <button class="faq-question flex w-full items-center justify-between px-6 py-5 text-left transition duration-200 hover:bg-gray-50">
+                        <span class="pr-8 font-semibold text-gray-900">Can I exchange an item?</span>
+                        <svg class="faq-icon h-6 w-6 transform text-pink-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5 text-gray-600">
+                        <p>Yes! If you need a different size or color, you can exchange your item within 30 days. Contact our customer service team and we'll help arrange the exchange. We'll cover the return shipping cost for exchanges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white py-16">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="rounded-3xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-white md:p-12">
+            <h2 class="mb-4 text-3xl font-bold">Still Have Questions?</h2>
+            <p class="mb-8 text-xl text-blue-100">Our customer support team is here to help you 24/7</p>
+            <a asp-controller="Contact" asp-action="Index" class="inline-block rounded-xl bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg transition duration-300 hover:bg-gray-100">
+                Contact Support
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('.faq-icon');
+
+            answer.classList.toggle('hidden');
+
+            icon.classList.toggle('rotate-180');
+        });
+    });
+
+    function filterCategory(category) {
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            if (btn.dataset.category === category) {
+                btn.classList.add('border-blue-600', 'text-gray-900');
+                btn.classList.remove('border-transparent', 'text-gray-700');
+            } else {
+                btn.classList.remove('border-blue-600', 'text-gray-900');
+                btn.classList.add('border-transparent', 'text-gray-700');
+            }
+        });
+
+        document.querySelectorAll('.faq-category').forEach(section => {
+            if (section.dataset.category === category) {
+                section.style.display = 'block';
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        filterCategory('general');
+    });
+
+    const searchInput = document.querySelector('input[type="text"]');
+    searchInput.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+
+        if (searchTerm === '') {
+            const activeCategory = document.querySelector('.category-btn.border-blue-600').dataset.category;
+            filterCategory(activeCategory);
+            return;
+        }
+
+        document.querySelectorAll('.faq-category').forEach(section => {
+            section.style.display = 'block';
+        });
+
+        let foundAny = false;
+        document.querySelectorAll('.faq-question').forEach(question => {
+            const questionText = question.textContent.toLowerCase();
+            const answerText = question.nextElementSibling.textContent.toLowerCase();
+            const faqItem = question.closest('.bg-white');
+
+            if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                faqItem.style.display = 'block';
+                foundAny = true;
+
+                if (!question.classList.contains('bg-yellow-50')) {
+                    question.classList.add('bg-yellow-50');
+                }
+            } else {
+                faqItem.style.display = 'none';
+                question.classList.remove('bg-yellow-50');
+            }
+        });
+
+        const existingMessage = document.querySelector('.no-results-message');
+        if (!foundAny && !existingMessage) {
+            const message = document.createElement('div');
+            message.className = 'no-results-message text-center py-8';
+            message.innerHTML = `
+                <div class="text-gray-600">
+                    <svg class="mx-auto mb-4 h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p class="mb-2 text-xl font-semibold">No results found</p>
+                    <p>Try different keywords or browse our categories</p>
+                </div>
+            `;
+            document.querySelector('.max-w-4xl').appendChild(message);
+        } else if (foundAny && existingMessage) {
+            existingMessage.remove();
+        }
+    });
+</script>
